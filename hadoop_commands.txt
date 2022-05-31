@@ -1,0 +1,26 @@
+duser@bmsce-Precision-T1700:~$ hdfs dfs -put welcome.txt /abc
+hduser@bmsce-Precision-T1700:~$ hdfs dfs -ls /
+Found 4 items
+drwxr-xr-x   - hduser supergroup          0 2022-05-31 09:55 /abc
+drwxr-xr-x   - hduser supergroup          0 2022-05-31 09:38 /prateek
+drwxrwxr-x   - hduser supergroup          0 2019-10-09 15:26 /tmp
+drwxr-xr-x   - hduser supergroup          0 2019-08-01 16:03 /user
+hduser@bmsce-Precision-T1700:~$ hdfs dfs -ls /abc
+Found 1 items
+-rw-r--r--   1 hduser supergroup          9 2022-05-31 09:55 /abc/welcome.txt
+hduser@bmsce-Precision-T1700:~$ hdfs dfs -cat /abc/welcome.txt
+welcomee
+hduser@bmsce-Precision-T1700:~$ hadoop fs -mv /abc/welcome.txt /prateek/wc.txt
+hduser@bmsce-Precision-T1700:~$ hadoop fs -cat /prateek/wc.txt
+welcomee
+hduser@bmsce-Precision-T1700:~$ hadoop fs -cp /prateek/wc.txt /tmp/wc1.txt
+hduser@bmsce-Precision-T1700:~$ hadoop fs -cat /abc/welcome.txt
+cat: `/abc/welcome.txt': No such file or directory
+hduser@bmsce-Precision-T1700:~$ hadoop fs -cat /tmp/wc1.txt
+welcomee
+hduser@bmsce-Precision-T1700:~$ hdfs dfs -getmerge /tmp/wc1.txt /prateek/wc.txt merge.txt
+hduser@bmsce-Precision-T1700:~$ cat merge.txt
+welcomee
+welcomee
+
+
